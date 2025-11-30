@@ -169,10 +169,10 @@ const ArtCard = ({ item, onClick }: ArtCardProps) => {
           <h3 className="font-bold text-stone-800 leading-tight group-hover:text-amber-700 transition-colors">
             {item.title}
           </h3>
-          <div className="flex items-center text-xs text-rose-400 font-bold bg-rose-50 px-2 py-1 rounded-full">
+          {/* <div className="flex items-center text-xs text-rose-400 font-bold bg-rose-50 px-2 py-1 rounded-full">
             <Heart size={10} className="mr-1 fill-current" />
             {item.likes}
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-auto flex flex-wrap gap-1">
@@ -193,22 +193,58 @@ type ModalProps = {
 };
 
 const Modal = ({ item, onClose }: ModalProps) => {
+  // Zoom state: controls whether the category icon is zoomed in the image area
+  const [isZoomed, setIsZoomed] = React.useState(false);
+  // Mouse-relative position (as percentages) used as transform-origin when zoomed
+  const [imagePosition, setImagePosition] = React.useState({ x: 50, y: 50 });
+  
+  // Safety guard: if there's no item selected, render nothing
   if (!item) return null;
+  // Icon to show on the left panel, based on the item's category
   const CategoryIcon = CATEGORIES.find(c => c.id === item.category)?.icon || Box;
+
+  // Updates imagePosition while zoomed to simulate panning by changing transform-origin
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isZoomed) return;
+    
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    
+    setImagePosition({ x, y });
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/40 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="bg-[#fcfbf7] w-full max-w-2xl rounded-3xl shadow-2xl border-4 border-white overflow-hidden flex flex-col md:flex-row max-h-[90vh]">
         
         {/* Image Section */}
-        <div className={`md:w-1/2 ${item.color} flex items-center justify-center p-12 relative`}>
-           <CategoryIcon size={96} className="text-black/10" />
+        <div 
+          className={`md:w-1/2 ${item.color} flex items-center justify-center p-12 relative ${isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'} overflow-hidden group`}
+          onClick={() => setIsZoomed(!isZoomed)}
+          onMouseMove={handleMouseMove}
+        >
+           <CategoryIcon 
+             size={96} 
+             className={`text-black/10 transition-transform ${isZoomed ? 'duration-100 scale-[3]' : 'duration-300 scale-100'}`}
+             style={isZoomed ? {
+               transformOrigin: `${imagePosition.x}% ${imagePosition.y}%`
+             } : {}}
+           />
            <button 
-             onClick={onClose}
-             className="absolute top-4 left-4 md:hidden bg-white/80 p-2 rounded-full shadow-sm hover:bg-white"
+             onClick={(e) => {
+               e.stopPropagation();
+               onClose();
+             }}
+             className="absolute top-4 left-4 md:hidden bg-white/80 p-2 rounded-full shadow-sm hover:bg-white z-10"
            >
              <X size={20} />
            </button>
+           {!isZoomed && (
+             <div className="absolute bottom-4 right-4 bg-white/80 px-3 py-1.5 rounded-full text-xs font-bold text-stone-600 opacity-0 group-hover:opacity-100 transition-opacity">
+               Click to zoom
+             </div>
+           )}
         </div>
 
         {/* Details Section */}
@@ -231,10 +267,10 @@ const Modal = ({ item, onClose }: ModalProps) => {
           
           <div className="text-stone-400 text-sm mb-6 flex items-center gap-2">
             <span>{item.date}</span>
-            <span>•</span>
+            {/* <span>•</span>
             <span className="flex items-center text-rose-400 font-bold">
                <Heart size={14} className="mr-1 fill-current" /> {item.likes}
-            </span>
+            </span> */}
           </div>
 
           <p className="text-stone-600 leading-relaxed mb-6">
@@ -339,7 +375,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="space-y-1 overflow-y-auto flex-1 pb-8">
+          <div className="space-y-1 overflow-y-auto overflow-x-hidden flex-1 pb-8">
             <div className="px-4 mb-2 text-xs font-bold text-stone-400 uppercase tracking-widest">Library</div>
             {CATEGORIES.map(cat => (
               <SidebarItem 
