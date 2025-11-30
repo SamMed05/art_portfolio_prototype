@@ -1,46 +1,64 @@
-# Getting Started with Create React App
+# Art Portfolio/Showcase Prototype
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive React prototype application designed to showcase a creative portfolio, featuring a clean UI with filtering, searching, and a detailed modal view for art items.
 
-## Available Scripts
+![screenshot](screenshot.png)
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Categorized Gallery**: Filter items by categories (3D models, Gen Art, Drawings, Logos/Vector).
+- **Search Functionality**: Real-time search by title or tags.
+- **Responsive Design**: Fully responsive layout that works on desktop and mobile.
+- **Dark/Light Mode**: System-aware theme switching with manual override.
+- **Interactive Modal**: Detailed view for each art piece with zoom capability.
+- **Modern UI**: Built with Tailwind CSS for a sleek, consistent look.
 
-Runs the app in the development mode.\
+## Tech Stack
+
+- **React** (v19)
+- **TypeScript**
+- **Tailwind CSS**
+- **Lucide React** (Icons)
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js installed
+- npm or yarn
+
+### Installation
+
+1. Navigate to the project directory:
+
+   ```bash
+   cd art_showcase_portfolio
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+### Running the App
+
+Runs the app in the development mode.
+
+```bash
+npm start
+```
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Building for Production
 
-### `npm test`
+Builds the app for production to the `build` folder.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm run build
+```
 
-### `npm run build`
+## License
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project is licensed under MIT License.

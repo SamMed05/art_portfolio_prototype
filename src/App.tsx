@@ -107,7 +107,7 @@ type Item = {
 
 const CATEGORIES: Category[] = [
   { id: 'all', label: 'All Items', icon: Grid, color: 'text-stone-600' },
-  { id: 'blockbench', label: 'Blockbench', icon: Box, color: 'text-amber-600' },
+  { id: 'modeling', label: '3D models', icon: Box, color: 'text-amber-600' },
   { id: 'generative', label: 'Gen Art', icon: Sparkles, color: 'text-purple-500' },
   { id: 'drawing', label: 'Drawings', icon: PenTool, color: 'text-rose-500' },
   { id: 'vector', label: 'Logos/Vector', icon: ImageIcon, color: 'text-blue-500' },
@@ -117,7 +117,7 @@ const SAMPLE_DATA: Item[] = [
   {
     id: 1,
     title: "Low Poly Fox",
-    category: "blockbench",
+    category: "modeling",
     tags: ["animal", "lowpoly", "nature"],
     date: "2023-10-15",
     description: "A cute low-poly fox model rigged for movement.",
@@ -157,7 +157,7 @@ const SAMPLE_DATA: Item[] = [
   {
     id: 5,
     title: "Voxel Sword",
-    category: "blockbench",
+    category: "modeling",
     tags: ["weapon", "fantasy", "voxel"],
     date: "2024-01-20",
     description: "A magical sword made of crystal voxels.",
@@ -498,7 +498,7 @@ function AppContent() {
                 <p className="text-stone-500 dark:text-stone-400 font-medium max-w-md">
                     {{
                     all: "Browse through my collection of creative works.",
-                    blockbench: "Explore my Blockbench models and voxel creations.",
+                    modeling: "Explore my 3D models and voxel creations.",
                     generative: "Discover my generative art and algorithmic pieces.",
                     drawing: "See my digital drawings and sketches.",
                     vector: "View my logo designs and vector graphics."
