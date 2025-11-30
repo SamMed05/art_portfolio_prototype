@@ -59,6 +59,33 @@ Builds the app for production to the `build` folder.
 npm run build
 ```
 
+## Deployment
+
+This project is configured for deployment to GitHub Pages.
+
+### Deploy to GitHub Pages
+
+To deploy your portfolio to GitHub Pages, run:
+
+```bash
+npm run deploy
+```
+
+This will:
+
+- Build the production version of your app
+- Push the built files to the `gh-pages` branch
+- Make your site available at your configured GitHub Pages URL
+
+### First-time Setup
+
+If deploying for the first time, ensure GitHub Pages is enabled in your repository settings:
+
+1. Go to your repository on GitHub
+2. Navigate to **Settings** → **Pages**
+3. Set the source to deploy from the `gh-pages` branch
+4. Your site will be live within a few minutes
+
 ## License
 
 This project is licensed under MIT License.
